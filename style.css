@@ -1,0 +1,116 @@
+/* Основные переменные */
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #E30613; /* Тот самый красный Porsche */
+    --secondary-text: #888888;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Стеклянная шапка */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 5%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+}
+
+nav a {
+    color: var(--secondary-text);
+    text-decoration: none;
+    margin-right: 30px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+nav a:hover { color: var(--text-color); }
+
+/* Главный экран */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 5%;
+    position: relative;
+}
+
+.hero-content { z-index: 2; }
+
+h1 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+}
+
+.hero-subtext {
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+    margin-bottom: 40px;
+}
+
+/* Кнопка с неоновым подтекстом */
+.btn-main {
+    display: inline-block;
+    padding: 18px 40px;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 2px;
+    transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.btn-main:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(227, 6, 19, 0.4);
+}
+
+/* Секции контента */
+.content-section {
+    padding: 150px 10%;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.container h2 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+}
+
+.container p {
+    font-size: 1.4rem;
+    color: var(--secondary-text);
+    max-width: 800px;
+}
