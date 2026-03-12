@@ -3,88 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porsche 911 — Наследие Скорости</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>PORSCHE 911 — LEGACY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="logo">PORSCHE</div>
-        <nav>
-            <a href="#history">История</a>
-            <a href="#evolution">Эволюция</a>
-            <a href="#design">Дизайн</a>
-            <a href="#stats">Мощность</a>
-            <a href="#facts">Факты</a>
-        </nav>
-        <button class="btn-primary">КОНФИГУРАТОР</button>
+        <button class="btn-config">КОНФИГУРАТОР</button>
     </header>
 
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <h1 class="reveal-text">PORSCHE 911</h1>
-                <p class="reveal-subtext">Символ инженерного гения, скорости и стиля.</p>
-                <div class="hero-btn-wrap reveal-btn">
-                    <a href="#history" class="btn-main">ИССЛЕДОВАТЬ НАСЛЕДИЕ</a>
+            <h1 class="reveal-text">911</h1>
+            <div class="hero-sub">
+                <p>ICONIC DESIGN. <br>PERFECT ENGINEERING.</p>
+            </div>
+        </section>
+
+        <section class="dark-section" id="history">
+            <div class="container">
+                <span class="label">01. ИСТОРИЯ</span>
+                <h2 class="reveal">ЛЕГЕНДА С 1963 ГОДА</h2>
+                <div class="split">
+                    <p class="reveal">Фердинанд Александр Порше создал силуэт, который не меняется десятилетиями. Это ДНК скорости, заложенная в каждом изгибе кузова.</p>
+                    <div class="img-wrap reveal">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070" alt="Classic">
+                    </div>
                 </div>
             </div>
-            <div class="hero-visual interactive-sphere"></div>
         </section>
 
-        <section id="history" class="content-section split container">
-            <div class="text-block reveal">
-                <span class="label">1963 — Настоящее время</span>
-                <h2>Наследие, застывшее в металле</h2>
-                <p>Всё началось в 1963 году. Фердинанд Порше представил миру не просто машину, а ДНК скорости. Заднемоторная компоновка и плавные линии кузова стали иконой, которую невозможно перепутать ни с чем другим.</p>
-            </div>
-            <div class="image-block reveal">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800" alt="Classic 911">
-            </div>
-        </section>
-
-        <section id="evolution" class="container content-section">
-            <h2 class="section-title reveal">Эволюция Инженерии</h2>
-            <div class="timeline">
-                <div class="timeline-item reveal"><h3>1963 — Начало</h3><p>Первый 911 заменил 356 модель. 130 л.с. и воздушное охлаждение.</p></div>
-                <div class="timeline-item reveal"><h3>1974 — Эпоха Турбо</h3><p>Появление 930 Turbo. Машина стала агрессивной и быстрой.</p></div>
-                <div class="timeline-item reveal"><h3>1997 — Водяная революция</h3><p>Поколение 996. Переход на водяное охлаждение.</p></div>
-                <div class="timeline-item reveal"><h3>Сегодня — Совершенство 992</h3><p>Цифровая панель, 650+ сил.</p></div>
+        <section class="specs-section">
+            <div class="container">
+                <span class="label">02. МОЩНОСТЬ</span>
+                <div class="specs-grid">
+                    <div class="spec-item reveal">
+                        <span class="val">650</span>
+                        <span class="key">Л.С.</span>
+                    </div>
+                    <div class="spec-item reveal">
+                        <span class="val">2.7</span>
+                        <span class="key">СЕК ДО 100</span>
+                    </div>
+                    <div class="spec-item reveal">
+                        <span class="val">330</span>
+                        <span class="key">КМ/Ч МАКС</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="design" class="grid-section container">
-            <h2 class="reveal">Анатомия Идеала</h2>
-            <div class="grid">
-                <div class="grid-item reveal"><h3>Заднемоторная компоновка</h3><p>Редкость для суперкаров, дающая эталонное сцепление.</p></div>
-                <div class="grid-item reveal"><h3>Аэродинамика</h3><p>Каждая линия режет воздух.</p></div>
-                <div class="grid-item reveal"><h3>Силуэт</h3><p>Круглая оптика и покатая крыша.</p></div>
+        <section class="details-section">
+            <div class="container">
+                <span class="label">03. ДЕТАЛИ</span>
+                <div class="details-flex">
+                    <div class="detail-img reveal">
+                        <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070" alt="Turbo S">
+                    </div>
+                    <div class="detail-text reveal">
+                        <h3>БЕЗ КОМПРОМИССОВ</h3>
+                        <p>От карбоновых обвесов до чип-тюнинга двигателя. 911 — это чистый холст для тех, кто жаждет большего.</p>
+                    </div>
+                </div>
             </div>
-        </section>
-
-        <section id="stats" class="stats-section">
-            <div class="stats-content container">
-                <div class="stat-item reveal"><span class="number">650</span><span class="desc">Лошадиных сил</span></div>
-                <div class="stat-item reveal"><span class="number">2.7</span><span class="desc">сек до 100 км/ч</span></div>
-                <div class="stat-item reveal"><span class="number">330</span><span class="desc">км/ч Макс. скорость</span></div>
-            </div>
-        </section>
-
-        <section id="facts" class="facts-section container">
-            <h2 class="reveal">Знаете ли вы?</h2>
-            <div class="fact-card reveal"><p>Porsche 911 участвовал в легендарных гонках Ле-Ман и завоевал множество побед.</p></div>
-            <div class="fact-card reveal"><p>В 911 впервые использовали турбонаддув в массовом производстве.</p></div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Лёха & Gichik. Создано для ценителей.</p>
+        <div class="container">
+            <p>DESIGNED BY LEKHA & GICHIK © 2026</p>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
