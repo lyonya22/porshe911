@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
@@ -29,71 +30,29 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ОБНОВЛЕННЫЙ ХЕДЕР --- */
         header {
             position: fixed; top: 0; width: 100%; display: flex;
             justify-content: space-between; align-items: center; padding: 30px 60px; z-index: 100;
-            /* Убрал mix-blend-mode, чтобы кнопка была видна четко */
         }
         .logo { font-weight: 900; letter-spacing: 10px; font-size: 1.2rem; color: #fff; text-decoration: none; }
 
-        /* СТИЛЬ КНОПКИ ИЗ ВИДЕО */
         .config-btn {
-            position: relative;
-            width: 50px; 
-            height: 50px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            overflow: hidden;
+            position: relative; width: 50px; height: 50px; border-radius: 50px;
+            border: 1px solid var(--border); background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px); cursor: pointer; overflow: hidden;
             transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            outline: none;
+            display: flex; align-items: center; justify-content: center; color: white; outline: none;
         }
-
         .btn-text {
-            position: absolute;
-            left: 25px;
-            font-weight: 900;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            white-space: nowrap;
+            position: absolute; left: 25px; font-weight: 900; font-size: 0.7rem;
+            letter-spacing: 2px; opacity: 0; transform: translateX(-20px);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); white-space: nowrap;
         }
+        .btn-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; transition: all 0.5s ease; }
+        .config-btn:hover { width: 200px; background: var(--accent); border-color: var(--accent); }
+        .config-btn:hover .btn-text { opacity: 1; transform: translateX(0); }
+        .config-btn:hover .btn-icon { transform: rotate(90deg) translateX(60px); opacity: 0; }
 
-        .btn-icon {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.5s ease;
-        }
-
-        .config-btn:hover {
-            width: 200px;
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-
-        .config-btn:hover .btn-text {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .config-btn:hover .btn-icon {
-            transform: rotate(90deg) translateX(60px);
-            opacity: 0;
-        }
-
-        /* --- ОСТАЛЬНЫЕ СТИЛИ --- */
         .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); }
@@ -108,7 +67,7 @@
         h3 { font-size: 3rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; }
         p { font-size: 1.1rem; line-height: 1.6; color: var(--grey); text-transform: uppercase; max-width: 700px; }
 
-        .canvas-section { height: 100vh; display: flex; align-items: center; position: relative; }
+        .canvas-section { height: 100vh; display: flex; align-items: center; position: relative; cursor: crosshair; }
         #porsche-3d { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; }
@@ -117,25 +76,27 @@
         .grid-item img { width: 100%; height: auto; filter: grayscale(1); transition: 0.8s; }
         .grid-item img:hover { filter: grayscale(0); }
 
-        .wide-img { width: 100%; height: 80vh; overflow: hidden; }
-        .wide-img img { width: 100%; height: 100%; object-fit: cover; }
+        /* СТИЛИ ДЛЯ ПЛАШЕК ИЗ ФОТО */
+        .details-gallery { background: #080808; overflow: hidden; }
+        .details-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; margin-top: 50px; }
+        .detail-item { position: relative; display: flex; flex-direction: column; }
+        .detail-item.wide { grid-column: span 2; margin-top: 80px; }
+        .detail-img-wrapper { width: 100%; aspect-ratio: 16/9; overflow: hidden; border: 1px solid var(--border); background: #111; }
+        .detail-img-wrapper img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s; }
+        .detail-item:hover .detail-img-wrapper img { transform: scale(1.05); filter: grayscale(0); }
+        .detail-info { margin-top: 25px; padding-left: 20px; border-left: 2px solid var(--accent); }
+        .detail-info span { display: block; font-weight: 900; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 10px; color: #fff; }
 
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
         .stat-card { background: var(--bg); padding: 80px 60px; }
         .stat-val { font-size: 6vw; font-weight: 900; display: block; line-height: 1; margin-bottom: 10px; }
         .stat-key { color: var(--accent); font-size: 0.8rem; font-weight: 900; letter-spacing: 3px; }
 
-        .mods-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
-        .mod-card { padding: 50px; border: 1px solid var(--border); transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .mod-card:hover { background: #fff; color: #000; }
-        .mod-card h4 { font-size: 2.5rem; font-weight: 900; margin-bottom: 20px; }
-
         footer { padding: 80px 60px; text-align: center; border-top: 1px solid var(--border); font-size: 0.7rem; letter-spacing: 5px; opacity: 0.4; }
 
         @media (max-width: 1024px) {
-            .info-grid, .mods-grid, .stats-grid { grid-template-columns: 1fr; }
-            header { padding: 20px 30px; }
-            .grid-item { padding: 60px 30px; }
+            .info-grid, .stats-grid, .details-grid { grid-template-columns: 1fr; }
+            .detail-item.wide { grid-column: span 1; }
         }
     </style>
 </head>
@@ -157,7 +118,7 @@
     <main>
         <section class="hero">
             <div class="hero-bg">
-                <img src="https://images.unsplash.com/photo-1611651338412-8403fa6e3599?q=808&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Porsche 911">
+                <img src="https://images.unsplash.com/photo-1611651338412-8403fa6e3599?q=80&w=2070" alt="Porsche 911">
             </div>
             <div class="hero-title">
                 <h1 id="main-title">911</h1>
@@ -170,196 +131,129 @@
             <div class="container" style="z-index: 2; pointer-events: none; position: relative;">
                 <span class="label">01 // ENGINEERING</span>
                 <h2>ФОРМА <br>СЛЕДУЕТ ЗА <br>ФУНКЦИЕЙ</h2>
-                <p>Каждая линия 911-го — это результат тысяч часов в аэродинамической трубе. Это не просто дизайн, это способ приручить воздух.</p>
+                <p>Наведи на пустоту, чтобы собрать легенду из частиц.</p>
             </div>
         </section>
 
-        <section class="info-grid">
-            <div class="grid-item">
-                <span class="label">02 // GENESIS</span>
-                <h3>НАСЛЕДИЕ 901</h3>
-                <p>В сентябре 1963 года на Франкфуртском автосалоне Porsche представила преемника 356. Оппозитный двигатель и узнаваемые «глаза» фар навсегда определили облик спорткара на следующие 60 лет.</p>
-            </div>
-            <div class="grid-item">
-                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070" alt="Retro Porsche">
-            </div>
+        <section class="stats-grid">
+            <div class="stat-card"><span class="stat-val">525</span><span class="stat-key">ЛОШАДИНЫХ СИЛ</span></div>
+            <div class="stat-card"><span class="stat-val">3.2</span><span class="stat-key">СЕК ДО 100 КМ/Ч</span></div>
+            <div class="stat-card"><span class="stat-val">9000</span><span class="stat-key">ОБ/МИН</span></div>
         </section>
 
-        <section class="wide-img">
-            <img src="https://images.unsplash.com/photo-1699325524552-555bd48866b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Track Porsche" id="parallax-img">
-        </section>
-
-        <section>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-val">525</span>
-                    <span class="stat-key">ЛОШАДИНЫХ СИЛ</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-val">3.2</span>
-                    <span class="stat-key">СЕК ДО 100 КМ/Ч</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-val">9000</span>
-                    <span class="stat-key">ОБ/МИН</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="info-grid" style="border-top: none;">
-            <div class="grid-item">
-                <img src="https://i.pinimg.com/736x/41/1a/26/411a2625fae9aaa2e3bd463de33180fb.jpg" alt="Wheel Detail">
-            </div>
-            <div class="grid-item">
-                <span class="label">03 // AERODYNAMICS</span>
-                <h3>АНАТОМИЯ СКОРОСТИ</h3>
-                <p>Активное антикрыло, воздухозаборники NACA и расширенные арки. В модели GT3 RS каждый элемент кузова создает прижимную силу, позволяя проходить повороты на грани законов физики.</p>
-            </div>
-        </section>
-
-        <section class="container">
-            <div style="text-align: center; margin-bottom: 80px;">
-                <span class="label">04 // CUSTOM CULTURE</span>
-                <h2 style="font-size: 5vw;">КУЛЬТ ИНДИВИДУАЛЬНОСТИ</h2>
-            </div>
-            <div class="mods-grid">
-                <div class="mod-card">
-                    <h4>RWB</h4>
-                    <p>Акира Накаи превращает Porsche в грубое искусство. Rough World — это широкие обвесы и дух ночных трасс Японии.</p>
-                </div>
-                <div class="mod-card">
-                    <h4>SINGER</h4>
-                    <p>Калифорнийская мечта. Переосмысление классики с использованием карбона и ювелирной отделки интерьера.</p>
-                </div>
-                <div class="mod-card">
-                    <h4>RUF</h4>
-                    <p>Больше чем тюнинг. RUF — это самостоятельный бренд, создающий монстров, способных бросить вызов любым гиперкарам.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container" style="background: #0a0a0a;">
-            <span class="label">05 // DID YOU KNOW?</span>
-            <div class="info-grid" style="border: none;">
-                <div style="padding-right: 40px;">
-                    <h3 style="font-size: 2rem;">КЛЮЧ СЛЕВА</h3>
-                    <p>Традиция заводить машину левой рукой пришла из Ле-Мана: так гонщики могли заводить мотор одновременно с включением передачи, экономя секунды на старте.</p>
-                </div>
-                <div>
-                    <h3 style="font-size: 2rem;">ЭВОЛЮЦИЯ, А НЕ РЕВОЛЮЦИЯ</h3>
-                    <p>Porsche 911 — единственный спорткар в мире, который сохраняет свою форму на протяжении 60 лет, становясь технически совершеннее с каждым поколением.</p>
+        <section class="details-gallery">
+            <div class="container">
+                <span class="label">02 // VISUAL PRECISION</span>
+                <div class="details-grid">
+                    <div class="detail-item large">
+                        <div class="detail-img-wrapper"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070"></div>
+                        <div class="detail-info"><span>FRONT DESIGN</span><p>Иконический взгляд фар Porsche.</p></div>
+                    </div>
+                    <div class="detail-item small" style="margin-top: 100px;">
+                        <div class="detail-img-wrapper"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=2070"></div>
+                        <div class="detail-info"><span>GT3 RS DNA</span><p>Трековые технологии на дорогах.</p></div>
+                    </div>
+                    <div class="detail-item wide">
+                        <div class="detail-img-wrapper"><img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070"></div>
+                        <div class="detail-info"><span>AERODYNAMICS</span><p>Приручая потоки воздуха.</p></div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        © 2026 ЛЁХА & GICHIK STUDIO // PORSCHE AG LEGACY PROJECT
-    </footer>
+    <footer>© 2026 ЛЁХА & GICHIK STUDIO // PORSCHE AG LEGACY</footer>
 
     <script>
-        // 1. Lenis Smooth Scroll
         const lenis = new Lenis();
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
 
-        // 2. GSAP & ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Parallax
-        gsap.to(".hero-bg img", {
-            yPercent: 30,
-            scale: 1.1,
-            scrollTrigger: {
-                trigger: ".hero",
-                scrub: true,
-                start: "top top"
-            }
-        });
+        // 3D MORPHING LOGIC
+        let scene, camera, renderer, particleSystem, initialPositions;
+        let targetPorschePoints = [];
 
-        // Main Title Animation
-        gsap.from("#main-title", {
-            y: 200, opacity: 0, duration: 2, ease: "expo.out"
-        });
-
-        // Parallax for wide image
-        gsap.to("#parallax-img", {
-            yPercent: -20,
-            scrollTrigger: {
-                trigger: ".wide-img",
-                scrub: true
-            }
-        });
-
-        // Stats counter animation
-        gsap.utils.toArray('.stat-val').forEach(val => {
-            let targetValue = parseFloat(val.innerText);
-            gsap.from(val, {
-                scrollTrigger: {
-                    trigger: val,
-                    start: "top 90%"
-                },
-                innerText: 0,
-                duration: 2,
-                snap: { innerText: 0.1 }
-            });
-        });
-
-        // 3. THREE.JS 3D
         const init3D = () => {
             const container = document.getElementById('porsche-3d');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
-
-            const geometry = new THREE.TorusKnotGeometry(1.5, 0.4, 200, 32);
-            const material = new THREE.PointsMaterial({ 
-                color: '#E30613', 
-                size: 0.012,
-                transparent: true,
-                opacity: 0.5
-            });
-            const points = new THREE.Points(geometry, material);
-            scene.add(points);
-
             camera.position.z = 5;
 
-            function animate() {
-                requestAnimationFrame(animate);
-                points.rotation.y += 0.002;
-                points.rotation.x += 0.001;
-                renderer.render(scene, camera);
-            }
-            animate();
+            // 1. Создаем сферу (Тор)
+            const sphereGeo = new THREE.TorusKnotGeometry(1.5, 0.4, 250, 40);
+            initialPositions = sphereGeo.attributes.position.array.slice();
 
-            // Интерактив 3D скролла
-            gsap.to(points.rotation, {
-                y: Math.PI * 2,
-                scrollTrigger: {
-                    trigger: ".canvas-section",
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1
+            // 2. Загружаем Porsche для координат
+            const loader = new THREE.GLTFLoader();
+            loader.load('porsche.glb', (gltf) => {
+                gltf.scene.scale.set(0.6, 0.6, 0.6);
+                gltf.scene.position.set(0, -1, 0);
+                gltf.scene.traverse((node) => {
+                    if (node.isMesh) {
+                        const pos = node.geometry.attributes.position.array;
+                        for (let i = 0; i < pos.length; i += 3) {
+                            targetPorschePoints.push(new THREE.Vector3(pos[i], pos[i+1], pos[i+2]).applyMatrix4(node.matrixWorld));
+                        }
+                    }
+                });
+                setupParticles();
+            });
+        };
+
+        const setupParticles = () => {
+            const geo = new THREE.BufferGeometry();
+            const count = Math.min(initialPositions.length / 3, targetPorschePoints.length);
+            const currentPos = new Float32Array(count * 3);
+            for(let i=0; i<count*3; i++) currentPos[i] = initialPositions[i];
+
+            geo.setAttribute('position', new THREE.BufferAttribute(currentPos, 3));
+            const mat = new THREE.PointsMaterial({ color: '#E30613', size: 0.015, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+            particleSystem = new THREE.Points(geo, mat);
+            scene.add(particleSystem);
+            
+            animate();
+            addInteractivity(count);
+        };
+
+        const addInteractivity = (count) => {
+            const wrap = document.querySelector('.canvas-section');
+            wrap.addEventListener('mouseenter', () => {
+                for(let i=0; i<count; i++) {
+                    const t = targetPorschePoints[i];
+                    gsap.to(particleSystem.geometry.attributes.position.array, {
+                        [i*3]: t.x, [i*3+1]: t.y, [i*3+2]: t.z,
+                        duration: 1.5 + Math.random(), ease: "expo.inOut",
+                        onUpdate: () => particleSystem.geometry.attributes.position.needsUpdate = true
+                    });
+                }
+            });
+            wrap.addEventListener('mouseleave', () => {
+                for(let i=0; i<count; i++) {
+                    gsap.to(particleSystem.geometry.attributes.position.array, {
+                        [i*3]: initialPositions[i*3], [i*3+1]: initialPositions[i*3+1], [i*3+2]: initialPositions[i*3+2],
+                        duration: 1.2, ease: "power3.inOut",
+                        onUpdate: () => particleSystem.geometry.attributes.position.needsUpdate = true
+                    });
                 }
             });
         };
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particleSystem.rotation.y += 0.001;
+            renderer.render(scene, camera);
+        }
+
         init3D();
 
-        // Reveal animations for headers
-        gsap.utils.toArray('h2, h3, .mod-card').forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 90%"
-                },
-                y: 60, opacity: 0, duration: 1.2, ease: "power4.out"
-            });
+        // Reveal animations for cards
+        gsap.utils.toArray('.detail-item, .stat-card').forEach(el => {
+            gsap.from(el, { scrollTrigger: el, y: 50, opacity: 0, duration: 1, ease: "power3.out" });
         });
     </script>
 </body>
