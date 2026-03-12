@@ -3,82 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORSCHE 911 // THE LEGACY</title>
-    <link rel="stylesheet" href="style.css">
+    <title>PORSCHE 911 // ULTIMATE</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #000;
+            --text: #fff;
+            --accent: #E30613;
+            --border: rgba(255,255,255,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Навигация */
+        header {
+            position: fixed; top: 0; width: 100%; display: flex;
+            justify-content: space-between; padding: 40px 60px; z-index: 100;
+            mix-blend-mode: difference;
+        }
+        .logo { font-weight: 900; letter-spacing: 10px; font-size: 1.2rem; }
+
+        /* Главная секция */
+        .hero { 
+            height: 100vh; position: relative; 
+            display: flex; align-items: center; justify-content: center; 
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: brightness(0.4) contrast(1.1);
+        }
+        .hero-title {
+            position: relative; z-index: 2; text-align: center;
+        }
+        .hero-title h1 {
+            font-size: 25vw; font-weight: 900; line-height: 0.8;
+            letter-spacing: -1.5vw; margin: 0;
+        }
+        .hero-sub {
+            color: var(--accent); letter-spacing: 15px; 
+            font-weight: 900; margin-top: 20px; font-size: 1.2rem;
+        }
+
+        /* 3D Секция */
+        .canvas-section {
+            height: 100vh; position: relative;
+            border-top: 1px solid var(--border);
+            display: flex; align-items: center;
+        }
+        #porsche-3d {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .canvas-content {
+            position: relative; z-index: 2; padding: 0 60px;
+            max-width: 800px; pointer-events: none;
+        }
+        .label { color: var(--accent); font-weight: 900; font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 20px; display: block; }
+        h2 { font-size: 6vw; font-weight: 900; line-height: 0.9; text-transform: uppercase; }
+
+        /* Контентная сетка */
+        .info-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--border);
+        }
+        .grid-item { padding: 120px 60px; border-right: 1px solid var(--border); }
+        .grid-item:last-child { border-right: none; }
+        
+        p { font-size: 1.25rem; line-height: 1.6; color: #888; text-transform: uppercase; margin-bottom: 40px; }
+        h3 { font-size: 3rem; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
+
+        /* Секция MODS */
+        .mods { padding: 100px 60px; border-top: 1px solid var(--border); }
+        .mods-title { font-size: 15vw; font-weight: 900; opacity: 0.05; line-height: 1; margin-bottom: -5vw; }
+        .mods-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .mod-card { 
+            padding: 50px; border: 1px solid var(--border); 
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .mod-card:hover { background: #fff; color: #000; transform: translateY(-10px); }
+        .mod-card h4 { font-size: 2rem; font-weight: 900; margin-bottom: 20px; }
+
+        footer { padding: 60px; border-top: 1px solid var(--border); text-align: center; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px; }
+
+        @media (max-width: 1024px) {
+            .info-grid, .mods-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 10vw; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="cursor"></div>
-
     <header>
         <div class="logo">P O R S C H E</div>
-        <div class="menu-btn">MENU</div>
+        <div style="font-weight: 900; font-size: 0.7rem; color: #555;">911 LEGACY — 2026</div>
     </header>
 
     <main>
         <section class="hero">
-            <div class="hero-img-wrap">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070" class="main-img" alt="911">
+            <div class="hero-bg">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070" alt="911">
             </div>
             <div class="hero-title">
-                <h1 class="split-text">911</h1>
-            </div>
-            <div class="hero-bottom">
-                <p>DESIGNED BY PRECISION. DRIVEN BY PASSION.</p>
+                <h1 id="main-title">911</h1>
+                <div class="hero-sub">THE ETERNAL SILHOUETTE</div>
             </div>
         </section>
 
-        <section class="canvas-wrap">
-            <div id="three-container"></div>
-            <div class="canvas-text">
+        <section class="canvas-section">
+            <div id="porsche-3d"></div>
+            <div class="canvas-content">
                 <span class="label">01 // ENGINEERING</span>
-                <h2>ИНЖЕНЕРНОЕ <br>СОВЕРШЕНСТВО</h2>
+                <h2>СОВЕРШЕНСТВО <br>В КАЖДОЙ ДЕТАЛИ</h2>
             </div>
         </section>
 
-        <section class="content-section">
-            <div class="grid-container">
-                <div class="grid-item text-block">
-                    <span class="label">02 // HISTORY</span>
-                    <h3>ОТ 901 ДО ЛЕГЕНДЫ</h3>
-                    <p>История началась в 1963-м. Название 901 пришлось сменить из-за Peugeot, но индекс 911 стал синонимом скорости. Шесть цилиндров, оппозитный мотор и воздушное охлаждение — это база, на которой стоит мир суперкаров.</p>
-                </div>
-                <div class="grid-item img-block">
-                    <img src="https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?q=80&w=1000" alt="Engine">
-                </div>
+        <section class="info-grid">
+            <div class="grid-item">
+                <span class="label">02 // HISTORY</span>
+                <h3>ОТ 901 ДО ИКОНЫ</h3>
+                <p>В 1963 году мир изменился. Изначально задуманная как модель 901, она стала 911 из-за спора с Peugeot. Но цифры не имели значения — значение имела душа. Оппозитный мотор и заднемоторная компоновка создали идеальный баланс.</p>
+            </div>
+            <div class="grid-item" style="background: #0a0a0a; display: flex; align-items: center; justify-content: center;">
+                 <div style="font-size: 10vw; font-weight: 900; color: #111;">STUTTGART</div>
             </div>
         </section>
 
-        <section class="tuning-section">
-            <div class="big-title">MODS</div>
-            <div class="tuning-grid">
-                <div class="t-card">
+        <section class="mods">
+            <div class="mods-title">MODS</div>
+            <div class="mods-grid">
+                <div class="mod-card">
                     <h4>RWB</h4>
-                    <p>RAUH-Welt Begriff. Широкие арки, ручная работа Акиры Накаи. Панк в мире Porsche.</p>
+                    <p>Акира Накаи. Ручная резка арок. Широчайший кузов и дух панка. Только для тех, кто не боится менять классику.</p>
                 </div>
-                <div class="t-card">
+                <div class="mod-card">
                     <h4>SINGER</h4>
-                    <p>Переосмысление классики 964. Карбон, золото и миллионные ценники.</p>
+                    <p>Переосмысление. Каждый винтик доведен до абсолюта. Карбон, кожа и чистый аналоговый кайф.</p>
                 </div>
-                <div class="t-card">
+                <div class="mod-card">
                     <h4>RUF</h4>
-                    <p>CTR Yellowbird. Легенда, которая обгоняла всё живое в 80-х.</p>
+                    <p>Это не тюнинг, это другой уровень. CTR Yellowbird навсегда вписал имя RUF в историю скорости.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-wrap">
-            <p>© 2026 LEKHA DESIGN STUDIO. ALL RIGHTS RESERVED.</p>
-        </div>
+        © 2026 ЛЁХА & GICHIK STUDIO. DESIGNED FOR BILLIONAIRES.
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // 1. Плавный скролл Lenis
+        const lenis = new Lenis();
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. GSAP Анимации
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Появление заголовка
+        gsap.from("#main-title", {
+            y: 300,
+            opacity: 0,
+            duration: 2,
+            ease: "expo.out"
+        });
+
+        // Анимация фона при скролле
+        gsap.to(".hero-bg img", {
+            scale: 1.2,
+            yPercent: 20,
+            scrollTrigger: {
+                trigger: ".hero",
+                scrub: true,
+                start: "top top"
+            }
+        });
+
+        // 3. THREE.JS (3D Сфера-сетка)
+        const init3D = () => {
+            const container = document.getElementById('porsche-3d');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            // Создаем геометрию сферы из точек (выглядит очень технологично)
+            const geometry = new THREE.IcosahedronGeometry(2, 15);
+            const material = new THREE.PointsMaterial({ 
+                color: '#E30613', 
+                size: 0.02,
+                transparent: true,
+                opacity: 0.5 
+            });
+            const points = new THREE.Points(geometry, material);
+            scene.add(points);
+
+            camera.position.z = 5;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                points.rotation.y += 0.002;
+                points.rotation.x += 0.001;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Вращение от скролла
+            gsap.to(points.rotation, {
+                y: Math.PI * 2,
+                scrollTrigger: {
+                    trigger: ".canvas-section",
+                    scrub: 2,
+                    start: "top bottom",
+                    end: "bottom top"
+                }
+            });
+        };
+
+        init3D();
+
+        // Появление карточек модов
+        gsap.from(".mod-card", {
+            scrollTrigger: {
+                trigger: ".mods",
+                start: "top 80%"
+            },
+            y: 100,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 1,
+            ease: "power4.out"
+        });
+    </script>
 </body>
 </html>
