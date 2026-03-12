@@ -29,16 +29,15 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ОБНОВЛЕННЫЙ ХЕДЕР --- */
         header {
             position: fixed; top: 0; width: 100%; display: flex;
             justify-content: space-between; align-items: center; padding: 30px 60px; z-index: 100;
-            /* Убрал mix-blend-mode, чтобы кнопка была видна четко */
         }
         .logo { font-weight: 900; letter-spacing: 10px; font-size: 1.2rem; color: #fff; text-decoration: none; }
 
-        /* СТИЛЬ КНОПКИ ИЗ ВИДЕО */
-        .config-btn {
+        /* --- ПИЗДАТАЯ АНИМАЦИЯ ТЕПЕРЬ ТУТ (TG КНОПКА) --- */
+        .tg-link {
+            text-decoration: none;
             position: relative;
             width: 50px; 
             height: 50px;
@@ -53,7 +52,6 @@
             align-items: center;
             justify-content: center;
             color: white;
-            outline: none;
         }
 
         .btn-text {
@@ -77,23 +75,23 @@
             transition: all 0.5s ease;
         }
 
-        .config-btn:hover {
-            width: 200px;
-            background: var(--accent);
-            border-color: var(--accent);
+        .tg-link:hover {
+            width: 160px;
+            background: #229ED9; /* Цвет Телеги */
+            border-color: #229ED9;
         }
 
-        .config-btn:hover .btn-text {
+        .tg-link:hover .btn-text {
             opacity: 1;
             transform: translateX(0);
         }
 
-        .config-btn:hover .btn-icon {
-            transform: rotate(90deg) translateX(60px);
+        .tg-link:hover .btn-icon {
+            transform: rotate(15deg) translate(50px, -50px); /* Самолетик взлетает */
             opacity: 0;
         }
 
-        /* --- ОСТАЛЬНЫЕ СТИЛИ --- */
+        /* --- КОНТЕНТ --- */
         .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); }
@@ -111,31 +109,16 @@
         .canvas-section { height: 100vh; display: flex; align-items: center; position: relative; }
         #porsche-3d { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; }
-        .grid-item { padding: 100px 60px; border-right: 1px solid var(--border); }
-        .grid-item:last-child { border-right: none; }
-        .grid-item img { width: 100%; height: auto; filter: grayscale(1); transition: 0.8s; }
-        .grid-item img:hover { filter: grayscale(0); }
-
-        .wide-img { width: 100%; height: 80vh; overflow: hidden; }
-        .wide-img img { width: 100%; height: 100%; object-fit: cover; }
-
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
         .stat-card { background: var(--bg); padding: 80px 60px; }
         .stat-val { font-size: 6vw; font-weight: 900; display: block; line-height: 1; margin-bottom: 10px; }
         .stat-key { color: var(--accent); font-size: 0.8rem; font-weight: 900; letter-spacing: 3px; }
 
-        .mods-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
-        .mod-card { padding: 50px; border: 1px solid var(--border); transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .mod-card:hover { background: #fff; color: #000; }
-        .mod-card h4 { font-size: 2.5rem; font-weight: 900; margin-bottom: 20px; }
-
         footer { padding: 80px 60px; text-align: center; border-top: 1px solid var(--border); font-size: 0.7rem; letter-spacing: 5px; opacity: 0.4; }
 
         @media (max-width: 1024px) {
-            .info-grid, .mods-grid, .stats-grid { grid-template-columns: 1fr; }
             header { padding: 20px 30px; }
-            .grid-item { padding: 60px 30px; }
+            .stats-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -143,15 +126,15 @@
 
     <header>
         <a href="#" class="logo">P O R S C H E</a>
-        <button class="config-btn">
-            <span class="btn-text">КОНФИГУРАТОР</span>
+        <a href="https://t.me/your_link" target="_blank" class="tg-link">
+            <span class="btn-text">TELEGRAM</span>
             <div class="btn-icon">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                 </svg>
             </div>
-        </button>
+        </a>
     </header>
 
     <main>
@@ -174,21 +157,6 @@
             </div>
         </section>
 
-        <section class="info-grid">
-            <div class="grid-item">
-                <span class="label">02 // GENESIS</span>
-                <h3>НАСЛЕДИЕ 901</h3>
-                <p>В сентябре 1963 года на Франкфуртском автосалоне Porsche представила преемника 356. Оппозитный двигатель и узнаваемые «глаза» фар навсегда определили облик спорткара на следующие 60 лет.</p>
-            </div>
-            <div class="grid-item">
-                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070" alt="Retro Porsche">
-            </div>
-        </section>
-
-        <section class="wide-img">
-            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=2070" alt="Track Porsche" id="parallax-img">
-        </section>
-
         <section>
             <div class="stats-grid">
                 <div class="stat-card">
@@ -205,52 +173,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="info-grid" style="border-top: none;">
-            <div class="grid-item">
-                <img src="https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?q=80&w=1000" alt="Wheel Detail">
-            </div>
-            <div class="grid-item">
-                <span class="label">03 // AERODYNAMICS</span>
-                <h3>АНАТОМИЯ СКОРОСТИ</h3>
-                <p>Активное антикрыло, воздухозаборники NACA и расширенные арки. В модели GT3 RS каждый элемент кузова создает прижимную силу, позволяя проходить повороты на грани законов физики.</p>
-            </div>
-        </section>
-
-        <section class="container">
-            <div style="text-align: center; margin-bottom: 80px;">
-                <span class="label">04 // CUSTOM CULTURE</span>
-                <h2 style="font-size: 5vw;">КУЛЬТ ИНДИВИДУАЛЬНОСТИ</h2>
-            </div>
-            <div class="mods-grid">
-                <div class="mod-card">
-                    <h4>RWB</h4>
-                    <p>Акира Накаи превращает Porsche в грубое искусство. Rough World — это широкие обвесы и дух ночных трасс Японии.</p>
-                </div>
-                <div class="mod-card">
-                    <h4>SINGER</h4>
-                    <p>Калифорнийская мечта. Переосмысление классики с использованием карбона и ювелирной отделки интерьера.</p>
-                </div>
-                <div class="mod-card">
-                    <h4>RUF</h4>
-                    <p>Больше чем тюнинг. RUF — это самостоятельный бренд, создающий монстров, способных бросить вызов любым гиперкарам.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container" style="background: #0a0a0a;">
-            <span class="label">05 // DID YOU KNOW?</span>
-            <div class="info-grid" style="border: none;">
-                <div style="padding-right: 40px;">
-                    <h3 style="font-size: 2rem;">КЛЮЧ СЛЕВА</h3>
-                    <p>Традиция заводить машину левой рукой пришла из Ле-Мана: так гонщики могли заводить мотор одновременно с включением передачи, экономя секунды на старте.</p>
-                </div>
-                <div>
-                    <h3 style="font-size: 2rem;">ЭВОЛЮЦИЯ, А НЕ РЕВОЛЮЦИЯ</h3>
-                    <p>Porsche 911 — единственный спорткар в мире, который сохраняет свою форму на протяжении 60 лет, становясь технически совершеннее с каждым поколением.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -258,7 +180,6 @@
     </footer>
 
     <script>
-        // 1. Lenis Smooth Scroll
         const lenis = new Lenis();
         function raf(time) {
             lenis.raf(time);
@@ -266,7 +187,6 @@
         }
         requestAnimationFrame(raf);
 
-        // 2. GSAP & ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
         // Hero Parallax
@@ -285,18 +205,8 @@
             y: 200, opacity: 0, duration: 2, ease: "expo.out"
         });
 
-        // Parallax for wide image
-        gsap.to("#parallax-img", {
-            yPercent: -20,
-            scrollTrigger: {
-                trigger: ".wide-img",
-                scrub: true
-            }
-        });
-
         // Stats counter animation
         gsap.utils.toArray('.stat-val').forEach(val => {
-            let targetValue = parseFloat(val.innerText);
             gsap.from(val, {
                 scrollTrigger: {
                     trigger: val,
@@ -308,7 +218,7 @@
             });
         });
 
-        // 3. THREE.JS 3D
+        // THREE.JS 3D
         const init3D = () => {
             const container = document.getElementById('porsche-3d');
             const scene = new THREE.Scene();
@@ -333,34 +243,20 @@
             function animate() {
                 requestAnimationFrame(animate);
                 points.rotation.y += 0.002;
-                points.rotation.x += 0.001;
                 renderer.render(scene, camera);
             }
             animate();
 
-            // Интерактив 3D скролла
             gsap.to(points.rotation, {
                 y: Math.PI * 2,
                 scrollTrigger: {
                     trigger: ".canvas-section",
                     start: "top bottom",
-                    end: "bottom top",
                     scrub: 1
                 }
             });
         };
         init3D();
-
-        // Reveal animations for headers
-        gsap.utils.toArray('h2, h3, .mod-card').forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 90%"
-                },
-                y: 60, opacity: 0, duration: 1.2, ease: "power4.out"
-            });
-        });
     </script>
 </body>
 </html>
