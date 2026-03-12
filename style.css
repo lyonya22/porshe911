@@ -1,86 +1,99 @@
 :root {
-    --bg-color: #000000;
-    --text-color: #ffffff;
-    --accent-color: #E30613; 
-    --secondary-text: #888888;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    --bg: #000;
+    --text: #fff;
+    --accent: #E30613;
+    --border: rgba(255,255,255,0.2);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+* { margin: 0; padding: 0; box-sizing: border-box; text-transform: uppercase; }
 
-/* Тот самый Стеклянный Эффект */
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Навигация как на Fire&Smoke */
 header {
     position: fixed;
     top: 0; width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 25px 5%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(20px);
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 50px;
+    z-index: 100;
+    mix-blend-mode: difference; /* Эффект инверсии на фоне */
 }
 
-.logo { font-weight: 900; font-size: 1.5rem; letter-spacing: 5px; }
+.logo { font-weight: 900; font-size: 1.2rem; letter-spacing: 5px; }
 
-nav a { color: var(--secondary-text); text-decoration: none; margin-right: 30px; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
-nav a:hover { color: var(--text-color); }
-
-/* Кнопка КОНФИГУРАТОР в хедере */
-.btn-primary {
-    background: var(--accent-color);
-    color: white;
-    padding: 12px 30px;
+.btn-config {
+    background: var(--text);
+    color: var(--bg);
     border: none;
-    font-weight: 700;
-    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: 900;
     cursor: pointer;
-    text-transform: uppercase;
+    font-size: 0.8rem;
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(227, 6, 19, 0.4); }
 
-/* Герой-секция */
-.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-.hero-content { z-index: 2; }
-h1 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; margin-bottom: 20px; letter-spacing: -3px; }
-.hero-subtext { font-size: 1.2rem; color: var(--secondary-text); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 3px;}
+/* Секция Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
 
-/* Секции контента */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-.content-section { padding: 150px 0; min-height: 80vh; display: flex; align-items: center; }
+.hero h1 {
+    font-size: 30vw; /* Гигантские буквы */
+    font-weight: 900;
+    line-height: 0.8;
+    letter-spacing: -1vw;
+}
 
-/* Разделенные секции (Текст + Картинка) */
-.split { gap: 80px; }
-.text-block { flex: 1; }
-.label { color: var(--accent-color); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; }
-.text-block h2 { font-size: 3.5rem; margin-bottom: 30px; }
-.text-block p { font-size: 1.2rem; color: var(--secondary-text); }
-.image-block { flex: 1.2; overflow: hidden; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-.image-block img { width: 100%; transition: 0.5s; filter: grayscale(20%); }
-.image-block img:hover { filter: grayscale(0%); transform: scale(1.03); }
+.hero-sub { width: 100%; padding: 40px 50px; display: flex; justify-content: flex-end; }
+.hero-sub p { text-align: right; font-size: 1rem; letter-spacing: 2px; color: var(--accent); }
 
-/* Таймлайн */
-.timeline-item { border-left: 2px solid var(--accent-color); padding-left: 30px; margin-bottom: 50px; position: relative; }
-.timeline-item::before { content: ""; position: absolute; left: -9px; top: 0; width: 16px; height: 16px; background: var(--accent-color); border-radius: 50%; }
+/* Контейнеры */
+.container { width: 100%; padding: 100px 50px; border-top: 1px solid var(--border); }
+.label { display: block; margin-bottom: 40px; font-size: 0.8rem; color: #555; }
 
-/* Характеристики */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.grid-item { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 10px; transition: var(--transition); }
-.grid-item:hover { background: rgba(255,255,255,0.07); transform: translateY(-5px); }
-.grid-item h3 { color: var(--accent-color); margin-bottom: 15px; }
+/* Текстовые блоки */
+h2 { font-size: clamp(2rem, 6vw, 5rem); font-weight: 900; line-height: 1; margin-bottom: 40px; }
 
-/* Статистика */
-.stats-section { padding: 100px 0; background: #111; text-align: center; }
-.stats-content { display: flex; justify-content: space-around; flex-wrap: wrap; }
-.number { display: block; font-size: 5rem; font-weight: 900; color: var(--accent-color); }
-.desc { color: var(--secondary-text); text-transform: uppercase; letter-spacing: 2px; }
+.split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: flex-start; }
+.split p { font-size: 1.2rem; line-height: 1.4; color: #ccc; }
 
-/* Карточки фактов */
-.fact-card { background: rgba(255,255,255,0.03); padding: 30px; margin-bottom: 20px; border-radius: 10px; font-size: 1.4rem; text-align: center;}
+.img-wrap img { width: 100%; filter: contrast(1.2) grayscale(100%); transition: 0.5s; }
+.img-wrap img:hover { filter: grayscale(0%); }
 
-footer { padding: 50px; text-align: center; color: var(--secondary-text); font-size: 0.8rem; }
+/* Сетка характеристик */
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+}
 
-@media (max-width: 900px) { .split { flex-direction: column; text-align: center; gap: 40px; } h1 { font-size: 4rem; } }
+.spec-item {
+    padding: 40px 0;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-item:last-child { border-right: none; }
+
+.spec-item .val { font-size: 8vw; font-weight: 900; line-height: 1; }
+.spec-item .key { font-size: 0.8rem; color: var(--accent); margin-top: 10px; }
+
+/* Футер */
+footer { padding: 50px; border-top: 1px solid var(--border); text-align: center; font-size: 0.7rem; color: #444; }
+
+@media (max-width: 768px) {
+    .split { grid-template-columns: 1fr; }
+    .specs-grid { grid-template-columns: 1fr; }
+    .spec-item { border-right: none; border-bottom: 1px solid var(--border); }
+}
