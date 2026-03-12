@@ -3,88 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORSCHE 911 | LEGEND</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <title>PORSCHE 911 // THE LEGACY</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <div class="cursor"></div>
+
     <header>
-        <div class="logo">PORSCHE</div>
-        <nav>
-            <a href="#history">Начало</a>
-            <a href="#evolution">Эволюция</a>
-            <a href="#tuning">Тюнинг</a>
-        </nav>
+        <div class="logo">P O R S C H E</div>
+        <div class="menu-btn">MENU</div>
     </header>
 
     <main>
-        <section class="hero-full">
-            <div class="hero-bg">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070" alt="Porsche 911 Main">
+        <section class="hero">
+            <div class="hero-img-wrap">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070" class="main-img" alt="911">
             </div>
             <div class="hero-title">
-                <h1 class="reveal-text">911</h1>
-                <p class="reveal-subtext">THE ETERNAL SILHOUETTE</p>
+                <h1 class="split-text">911</h1>
+            </div>
+            <div class="hero-bottom">
+                <p>DESIGNED BY PRECISION. DRIVEN BY PASSION.</p>
             </div>
         </section>
 
-        <section id="history" class="container">
-            <span class="label">01. ORIGINS</span>
-            <h2>РОЖДЕНИЕ ИКОНЫ (1963)</h2>
-            <div class="split">
-                <div class="text-side reveal">
-                    <p>Первый Porsche 911 был представлен в 1963 году на автосалоне во Франкфурте как замена модели 356. Изначально он должен был называться 901, но из-за претензий Peugeot (которые забронировали все трехзначные числа с нулем посередине), название сменили на легендарное 911.</p>
-                    <p>Сердцем машины стал оппозитный шестицилиндровый двигатель с воздушным охлаждением — решение, которое определяло характер 911-го на протяжении следующих 34 лет.</p>
-                </div>
-                <div class="img-side reveal">
-                    <img src="https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?q=80&w=1000" alt="Classic 911 Interior">
-                </div>
+        <section class="canvas-wrap">
+            <div id="three-container"></div>
+            <div class="canvas-text">
+                <span class="label">01 // ENGINEERING</span>
+                <h2>ИНЖЕНЕРНОЕ <br>СОВЕРШЕНСТВО</h2>
             </div>
         </section>
 
-        <section id="tuning" class="dark-block">
-            <div class="container">
-                <span class="label">02. MODIFICATIONS</span>
-                <h2 class="reveal">КУЛЬТ ТЮНИНГА</h2>
-                <div class="specs-grid">
-                    <div class="spec-item reveal">
-                        <h3>RWB (RAUH-Welt BEGRIFF)</h3>
-                        <p>Акира Накаи создает экстремально широкие обвесы вручную. Это чистый панк в мире Porsche — огромные антикрылья и заклепки.</p>
-                    </div>
-                    <div class="spec-item reveal">
-                        <h3>SINGER</h3>
-                        <p>«Reimagined» — они берут классические кузова 964 и пересобирают их с использованием карбона и современных технологий. Стоимость таких проектов переваливает за $1 000 000.</p>
-                    </div>
-                    <div class="spec-item reveal">
-                        <h3>RUF</h3>
-                        <p>Это уже не просто тюнинг, а отдельный производитель. Легендарный «Yellowbird» (CTR) в 80-х разгонялся до 340 км/ч, уничтожая суперкары того времени.</p>
-                    </div>
+        <section class="content-section">
+            <div class="grid-container">
+                <div class="grid-item text-block">
+                    <span class="label">02 // HISTORY</span>
+                    <h3>ОТ 901 ДО ЛЕГЕНДЫ</h3>
+                    <p>История началась в 1963-м. Название 901 пришлось сменить из-за Peugeot, но индекс 911 стал синонимом скорости. Шесть цилиндров, оппозитный мотор и воздушное охлаждение — это база, на которой стоит мир суперкаров.</p>
+                </div>
+                <div class="grid-item img-block">
+                    <img src="https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?q=80&w=1000" alt="Engine">
                 </div>
             </div>
         </section>
 
-        <section id="tech" class="container">
-            <span class="label">03. TECHNOLOGY</span>
-            <div class="big-stats">
-                <div class="stat reveal">
-                    <span class="val">3.745</span>
-                    <span class="key">ОБЪЕМ ДВИГАТЕЛЯ (СМ³)</span>
+        <section class="tuning-section">
+            <div class="big-title">MODS</div>
+            <div class="tuning-grid">
+                <div class="t-card">
+                    <h4>RWB</h4>
+                    <p>RAUH-Welt Begriff. Широкие арки, ручная работа Акиры Накаи. Панк в мире Porsche.</p>
                 </div>
-                <div class="stat reveal">
-                    <span class="val">800</span>
-                    <span class="key">КРУТЯЩИЙ МОМЕНТ (НМ)</span>
+                <div class="t-card">
+                    <h4>SINGER</h4>
+                    <p>Переосмысление классики 964. Карбон, золото и миллионные ценники.</p>
+                </div>
+                <div class="t-card">
+                    <h4>RUF</h4>
+                    <p>CTR Yellowbird. Легенда, которая обгоняла всё живое в 80-х.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>MADE BY LEKHA & GICHIK. NO CONFIGURATORS, ONLY SPEED.</p>
+        <div class="footer-wrap">
+            <p>© 2026 LEKHA DESIGN STUDIO. ALL RIGHTS RESERVED.</p>
+        </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
