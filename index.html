@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORSCHE 911 — LEGACY</title>
+    <title>PORSCHE 911 | LEGEND</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,70 +11,76 @@
 
     <header>
         <div class="logo">PORSCHE</div>
-        <button class="btn-config">КОНФИГУРАТОР</button>
+        <nav>
+            <a href="#history">Начало</a>
+            <a href="#evolution">Эволюция</a>
+            <a href="#tuning">Тюнинг</a>
+        </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <h1 class="reveal-text">911</h1>
-            <div class="hero-sub">
-                <p>ICONIC DESIGN. <br>PERFECT ENGINEERING.</p>
+        <section class="hero-full">
+            <div class="hero-bg">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070" alt="Porsche 911 Main">
+            </div>
+            <div class="hero-title">
+                <h1 class="reveal-text">911</h1>
+                <p class="reveal-subtext">THE ETERNAL SILHOUETTE</p>
             </div>
         </section>
 
-        <section class="dark-section" id="history">
-            <div class="container">
-                <span class="label">01. ИСТОРИЯ</span>
-                <h2 class="reveal">ЛЕГЕНДА С 1963 ГОДА</h2>
-                <div class="split">
-                    <p class="reveal">Фердинанд Александр Порше создал силуэт, который не меняется десятилетиями. Это ДНК скорости, заложенная в каждом изгибе кузова.</p>
-                    <div class="img-wrap reveal">
-                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070" alt="Classic">
-                    </div>
+        <section id="history" class="container">
+            <span class="label">01. ORIGINS</span>
+            <h2>РОЖДЕНИЕ ИКОНЫ (1963)</h2>
+            <div class="split">
+                <div class="text-side reveal">
+                    <p>Первый Porsche 911 был представлен в 1963 году на автосалоне во Франкфурте как замена модели 356. Изначально он должен был называться 901, но из-за претензий Peugeot (которые забронировали все трехзначные числа с нулем посередине), название сменили на легендарное 911.</p>
+                    <p>Сердцем машины стал оппозитный шестицилиндровый двигатель с воздушным охлаждением — решение, которое определяло характер 911-го на протяжении следующих 34 лет.</p>
+                </div>
+                <div class="img-side reveal">
+                    <img src="https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?q=80&w=1000" alt="Classic 911 Interior">
                 </div>
             </div>
         </section>
 
-        <section class="specs-section">
+        <section id="tuning" class="dark-block">
             <div class="container">
-                <span class="label">02. МОЩНОСТЬ</span>
+                <span class="label">02. MODIFICATIONS</span>
+                <h2 class="reveal">КУЛЬТ ТЮНИНГА</h2>
                 <div class="specs-grid">
                     <div class="spec-item reveal">
-                        <span class="val">650</span>
-                        <span class="key">Л.С.</span>
+                        <h3>RWB (RAUH-Welt BEGRIFF)</h3>
+                        <p>Акира Накаи создает экстремально широкие обвесы вручную. Это чистый панк в мире Porsche — огромные антикрылья и заклепки.</p>
                     </div>
                     <div class="spec-item reveal">
-                        <span class="val">2.7</span>
-                        <span class="key">СЕК ДО 100</span>
+                        <h3>SINGER</h3>
+                        <p>«Reimagined» — они берут классические кузова 964 и пересобирают их с использованием карбона и современных технологий. Стоимость таких проектов переваливает за $1 000 000.</p>
                     </div>
                     <div class="spec-item reveal">
-                        <span class="val">330</span>
-                        <span class="key">КМ/Ч МАКС</span>
+                        <h3>RUF</h3>
+                        <p>Это уже не просто тюнинг, а отдельный производитель. Легендарный «Yellowbird» (CTR) в 80-х разгонялся до 340 км/ч, уничтожая суперкары того времени.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="details-section">
-            <div class="container">
-                <span class="label">03. ДЕТАЛИ</span>
-                <div class="details-flex">
-                    <div class="detail-img reveal">
-                        <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2070" alt="Turbo S">
-                    </div>
-                    <div class="detail-text reveal">
-                        <h3>БЕЗ КОМПРОМИССОВ</h3>
-                        <p>От карбоновых обвесов до чип-тюнинга двигателя. 911 — это чистый холст для тех, кто жаждет большего.</p>
-                    </div>
+        <section id="tech" class="container">
+            <span class="label">03. TECHNOLOGY</span>
+            <div class="big-stats">
+                <div class="stat reveal">
+                    <span class="val">3.745</span>
+                    <span class="key">ОБЪЕМ ДВИГАТЕЛЯ (СМ³)</span>
+                </div>
+                <div class="stat reveal">
+                    <span class="val">800</span>
+                    <span class="key">КРУТЯЩИЙ МОМЕНТ (НМ)</span>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>DESIGNED BY LEKHA & GICHIK © 2026</p>
-        </div>
+        <p>MADE BY LEKHA & GICHIK. NO CONFIGURATORS, ONLY SPEED.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
